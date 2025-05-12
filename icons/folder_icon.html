@@ -1,0 +1,1107 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Files App Icon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            overflow: hidden;
+            /* Enhanced ambient background */
+            background: radial-gradient(circle at center, #f8fafd 0%, #e8eef5 100%);
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Added enhanced 3D effect */
+            perspective: 2000px;
+        }
+
+        .icon-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            perspective: 1200px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Enhanced container shadow */
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+        }
+
+        .icon-container:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.2));
+        }
+
+        .icon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .folder {
+            position: absolute;
+            width: 160px;
+            height: 120px;
+            top: 40px;
+            left: 20px;
+            background: linear-gradient(135deg, #3986C3 0%, #60BEFF 100%);
+            border-radius: 14px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.2), 
+                0 5px 15px rgba(0, 0, 0, 0.1),
+                inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.4s ease;
+            /* Enhanced reflection */
+            transform-style: preserve-3d;
+        }
+
+        .folder:before {
+            content: '';
+            position: absolute;
+            width: 54px;
+            height: 24px;
+            top: -12px;
+            left: 20px;
+            background: #3083BE;
+            border-radius: 7px 7px 0 0;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            /* Added depth effect */
+            transform: translateZ(2px);
+        }
+
+        .folder-tab {
+            position: absolute;
+            width: 180px;
+            height: 30px;
+            top: 20px;
+            left: 10px;
+            background: linear-gradient(to bottom, #3b90d0 0%, #2d7eb8 100%);
+            border-radius: 10px 10px 0 0;
+            transform-origin: bottom;
+            transition: transform 0.3s ease;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            /* Enhanced shadow */
+            box-shadow: 
+                0 -2px 5px rgba(0, 0, 0, 0.1),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
+
+        /* NEW: Enhanced folder shadow transition */
+        .icon-container:hover .folder {
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.25), 
+                0 10px 20px rgba(0, 0, 0, 0.15),
+                inset 0 1px 3px rgba(255, 255, 255, 0.6);
+            transform: translateY(-5px) translateZ(5px);
+            filter: brightness(1.05);
+        }
+
+        .files {
+            position: absolute;
+            top: 50px;
+            left: 40px;
+            width: 120px;
+            height: 80px;
+            z-index: 2;
+            transform-style: preserve-3d;
+        }
+
+        .file {
+            position: absolute;
+            width: 60px;
+            height: 70px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            /* Enhanced paper effect */
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
+            transform-style: preserve-3d;
+        }
+
+        .file:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-style: solid;
+            border-width: 15px;
+            border-color: #f0f2f5 #f0f2f5 transparent transparent;
+            transition: all 0.3s ease;
+            /* Enhanced fold effect */
+            box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .file:after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 3px;
+            background: #e0e0e0;
+            top: 25px;
+            left: 15%;
+            box-shadow: 0 10px 0 #e0e0e0, 0 20px 0 #e0e0e0;
+        }
+
+        .file1 {
+            transform: rotate(-10deg) translateX(-10px) translateZ(5px);
+            background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+            z-index: 1;
+        }
+
+        .file2 {
+            transform: translateY(-5px) translateZ(10px);
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
+            z-index: 2;
+        }
+
+        .file3 {
+            transform: rotate(10deg) translateX(10px) translateZ(15px);
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%);
+            z-index: 3;
+        }
+
+        /* NEW: Enhanced file hover effects */
+        .icon-container:hover .file1 {
+            transform: rotate(-25deg) translateX(-35px) translateY(-15px) translateZ(25px);
+            box-shadow: -8px 10px 20px rgba(0, 0, 0, 0.15), -4px 5px 10px rgba(0, 0, 0, 0.1);
+            filter: brightness(1.03);
+        }
+
+        .icon-container:hover .file2 {
+            transform: translateY(-28px) translateZ(35px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.1);
+            filter: brightness(1.05);
+        }
+
+        .icon-container:hover .file3 {
+            transform: rotate(25deg) translateX(35px) translateY(-15px) translateZ(25px);
+            box-shadow: 8px 10px 20px rgba(0, 0, 0, 0.15), 4px 5px 10px rgba(0, 0, 0, 0.1);
+            filter: brightness(1.03);
+        }
+
+        .file-icon {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .file1 .file-icon::after {
+            content: "DOC";
+            color: #4285F4;
+        }
+
+        .file2 .file-icon::after {
+            content: "PDF";
+            color: #DB4437;
+        }
+
+        .file3 .file-icon::after {
+            content: "XLS";
+            color: #0F9D58;
+        }
+
+        .highlight {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 60%);
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .icon-container:hover .highlight {
+            opacity: 1;
+            animation: highlight-pulse 3s infinite;
+        }
+
+        /* NEW: Enhanced highlight pulse */
+        @keyframes highlight-pulse {
+            0%, 100% {
+                opacity: 0.7;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 60%);
+            }
+            50% {
+                opacity: 0.4;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 60%);
+            }
+        }
+
+        .app-name {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 25px;
+            opacity: 0.9;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            /* Enhanced text effect */
+            letter-spacing: 0.5px;
+        }
+
+        .icon-container:hover + .app-name {
+            transform: translateY(5px);
+            color: #2d7eb8;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #60BEFF;
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(1px);
+        }
+
+        .bounce {
+            animation: bounce 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* NEW: Enhanced bounce animation */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0) scale(1) rotateZ(0deg);
+            }
+            30% {
+                transform: translateY(-50px) scale(1.15) rotateZ(-5deg);
+            }
+            50% {
+                transform: translateY(-20px) scale(0.95) rotateZ(5deg);
+            }
+            70% {
+                transform: translateY(-10px) scale(1.05) rotateZ(-2deg);
+            }
+            85% {
+                transform: translateY(-5px) scale(1.02) rotateZ(1deg);
+            }
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            background: radial-gradient(circle at center, rgba(96, 190, 255, 0.4) 0%, rgba(96, 190, 255, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .icon-container:hover .glow {
+            opacity: 1;
+            animation: pulse 2s infinite;
+        }
+
+        /* NEW: Enhanced pulse animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+                background: radial-gradient(circle at center, rgba(96, 190, 255, 0.4) 0%, rgba(96, 190, 255, 0) 70%);
+            }
+            50% {
+                transform: scale(1.08);
+                opacity: 0.6;
+                background: radial-gradient(circle at center, rgba(96, 190, 255, 0.3) 0%, rgba(96, 190, 255, 0) 70%);
+            }
+        }
+        
+        .file-shimmer {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 4s infinite;
+            transform: skewX(-20deg);
+        }
+        
+        /* NEW: Enhanced shimmer animation */
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+                opacity: 0.7;
+            }
+            40% {
+                opacity: 1;
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                left: 180%;
+                opacity: 0.7;
+            }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* NEW: Document lines animation */
+        .progress-bar {
+            position: absolute;
+            bottom: 5px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: #eee;
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            /* Enhanced depth effect */
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335);
+            background-size: 200% 100%;
+            animation: progress-animation 2s infinite;
+        }
+        
+        /* NEW: Enhanced progress animation */
+        @keyframes progress-animation {
+            0% {
+                width: 0%;
+                background-position: 0% 0%;
+            }
+            50% {
+                width: 100%;
+                background-position: 100% 0%;
+            }
+            100% {
+                width: 100%;
+                background-position: 200% 0%;
+            }
+        }
+        
+        .icon-container:hover .file2 .progress-bar {
+            opacity: 1;
+        }
+        
+        /* Document lines animation */
+        .doc-line {
+            position: absolute;
+            height: 2px;
+            background: #e0e0e0;
+            left: 15%;
+            width: 0;
+            transition: width 0.5s ease;
+            /* Enhanced paper effect */
+            box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+        }
+        
+        .line1 { top: 15px; transition-delay: 0.1s; }
+        .line2 { top: 25px; transition-delay: 0.2s; }
+        .line3 { top: 35px; transition-delay: 0.3s; }
+        .line4 { top: 45px; transition-delay: 0.4s; }
+        
+        .icon-container:hover .doc-line {
+            width: 70%;
+        }
+        
+        /* NEW: Enhanced notification */
+        .notification {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(to bottom right, #FF4D4D, #DB4437);
+            border-radius: 12px;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transform: scale(0);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            border: 2px solid white;
+            font-weight: bold;
+        }
+        
+        .icon-container:hover .notification {
+            transform: scale(1);
+            animation: notification-pulse 1.5s infinite;
+        }
+        
+        /* NEW: Enhanced notification pulse */
+        @keyframes notification-pulse {
+            0%, 100% { transform: scale(1); background: linear-gradient(to bottom right, #FF4D4D, #DB4437); }
+            50% { transform: scale(1.1); background: linear-gradient(to bottom right, #FF5E5E, #E04E41); }
+        }
+        
+        /* File hover effects */
+        .file-hover-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.03);
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .icon-container:hover .file:hover .file-hover-effect {
+            opacity: 1;
+        }
+        
+        /* NEW: Enhanced floating dots animation */
+        .floating-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .floating-dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(96, 190, 255, 0.7);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+        
+        /* NEW: Enhanced folder glow */
+        .folder:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.2);
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .icon-container:hover .folder:after {
+            opacity: 1;
+            animation: folder-outline-pulse 2s infinite;
+        }
+        
+        /* NEW: Enhanced folder outline pulse */
+        @keyframes folder-outline-pulse {
+            0%, 100% {
+                box-shadow: inset 0 0 0 2px rgba(255,255,255,0.2);
+            }
+            50% {
+                box-shadow: inset 0 0 0 2px rgba(255,255,255,0.4);
+            }
+        }
+        
+        /* Ripple effect on click */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            transform: scale(0);
+            animation: ripple 0.8s ease-out;
+            pointer-events: none;
+        }
+        
+        /* NEW: Enhanced ripple animation */
+        @keyframes ripple {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        
+        /* NEW: Paper fold corner effect */
+        .file:before {
+            transform-origin: top right;
+            transition: all 0.4s ease;
+        }
+        
+        .icon-container:hover .file:hover:before {
+            transform: rotate(-10deg);
+            border-width: 18px;
+        }
+        
+        /* NEW: 3D Shadow under files */
+        .file-shadow {
+            position: absolute;
+            width: 80%;
+            height: 10px;
+            bottom: -10px;
+            left: 10%;
+            background: rgba(0,0,0,0.07);
+            border-radius: 50%;
+            filter: blur(3px);
+            z-index: -1;
+            transform: translateZ(-5px);
+            transition: all 0.4s ease;
+        }
+        
+        .icon-container:hover .file .file-shadow {
+            filter: blur(5px);
+            width: 90%;
+            height: 15px;
+            left: 5%;
+            background: rgba(0,0,0,0.12);
+        }
+        
+        /* NEW: File content effect */
+        .file-content {
+            position: absolute;
+            width: 70%;
+            height: 50%;
+            top: 12px;
+            left: 15%;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .file-content-item {
+            position: absolute;
+            height: 2px;
+            background: #e0e0e0;
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        
+        .content1 { top: 0px; width: 80%; }
+        .content2 { top: 5px; width: 90%; }
+        .content3 { top: 10px; width: 75%; }
+        .content4 { top: 15px; width: 85%; }
+        .content5 { top: 20px; width: 70%; }
+        
+        .icon-container:hover .file-content-item {
+            width: 100%;
+        }
+        
+        /* NEW: Ambient background particles */
+        .ambient-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .ambient-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(96, 190, 255, 0.3);
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.6;
+        }
+        
+        /* NEW: File bookmark effect */
+        .bookmark {
+            position: absolute;
+            width: 12px;
+            height: 20px;
+            top: -5px;
+            right: 15px;
+            background: #FF4D4D;
+            border-radius: 0 0 6px 6px;
+            transform: translateY(-20px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 3;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        
+        .icon-container:hover .file3 .bookmark {
+            transform: translateY(0);
+        }
+        
+        /* NEW: Folder pattern */
+        .folder-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.05) 0px,
+                rgba(255,255,255,0.05) 1px,
+                transparent 1px,
+                transparent 10px
+            );
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .icon-container:hover .folder-pattern {
+            opacity: 1;
+        }
+        
+        /* NEW: Scale and rotate effect for files during animation */
+        @keyframes file-jump {
+            0% { transform: translateY(0) scale(1) rotate(0); }
+            40% { transform: translateY(-80px) scale(1.1) rotate(-5deg); }
+            60% { transform: translateY(-60px) scale(1.05) rotate(5deg); }
+            80% { transform: translateY(-30px) scale(1) rotate(-2deg); }
+            100% { transform: translateY(0) scale(1) rotate(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="icon-container" id="iconContainer">
+            <div class="icon" id="icon">
+                <div class="folder">
+                    <div class="folder-tab"></div>
+                    <div class="highlight"></div>
+                    <div class="glow"></div>
+                    <div class="folder-pattern"></div>
+                    <div class="notification">3</div>
+                </div>
+                <div class="files">
+                    <div class="file file1">
+                        <div class="file-icon"></div>
+                        <div class="file-shimmer"></div>
+                        <div class="file-hover-effect"></div>
+                        <div class="doc-line line1"></div>
+                        <div class="doc-line line2"></div>
+                        <div class="doc-line line3"></div>
+                        <div class="doc-line line4"></div>
+                        <div class="file-shadow"></div>
+                        <div class="file-content">
+                            <div class="file-content-item content1"></div>
+                            <div class="file-content-item content2"></div>
+                            <div class="file-content-item content3"></div>
+                            <div class="file-content-item content4"></div>
+                            <div class="file-content-item content5"></div>
+                        </div>
+                    </div>
+                    <div class="file file2">
+                        <div class="file-icon"></div>
+                        <div class="file-shimmer"></div>
+                        <div class="file-hover-effect"></div>
+                        <div class="file-shadow"></div>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="file-content">
+                            <div class="file-content-item content1"></div>
+                            <div class="file-content-item content2"></div>
+                            <div class="file-content-item content3"></div>
+                            <div class="file-content-item content4"></div>
+                            <div class="file-content-item content5"></div>
+                        </div>
+                    </div>
+                    <div class="file file3">
+                        <div class="file-icon"></div>
+                        <div class="file-shimmer"></div>
+                        <div class="file-hover-effect"></div>
+                        <div class="bookmark"></div>
+                        <div class="file-shadow"></div>
+                        <div class="file-content">
+                            <div class="file-content-item content1"></div>
+                            <div class="file-content-item content2"></div>
+                            <div class="file-content-item content3"></div>
+                            <div class="file-content-item content4"></div>
+                            <div class="file-content-item content5"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="particles" id="particles"></div>
+                <div class="floating-dots" id="floatingDots"></div>
+                <div class="ambient-particles" id="ambientParticles"></div>
+            </div>
+        </div>
+        <div class="app-name"></div>
+    </div>
+
+    <script>
+        const iconContainer = document.getElementById('iconContainer');
+        const icon = document.getElementById('icon');
+        const files = document.querySelectorAll('.file');
+        const particles = document.getElementById('particles');
+        const folder = document.querySelector('.folder');
+        const floatingDots = document.getElementById('floatingDots');
+        const ambientParticles = document.getElementById('ambientParticles');
+        
+        // Create particles
+        const createParticles = () => {
+            particles.innerHTML = '';
+            const particleCount = 30; // Increased count
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random position around the folder
+                const randomX = Math.random() * 180;
+                const randomY = Math.random() * 140 + 30;
+                
+                particle.style.left = `${randomX}px`;
+                particle.style.top = `${randomY}px`;
+                particle.style.transform = 'scale(0)';
+                
+                // Enhanced random size
+                const size = Math.random() * 8 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Enhanced random color variations of the folder color
+                const hue = 200 + Math.random() * 30;
+                const saturation = 70 + Math.random() * 30;
+                const lightness = 50 + Math.random() * 30;
+                particle.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                
+                // Enhanced blur effect
+                particle.style.filter = `blur(${Math.random() * 2 + 1}px)`;
+                
+                particles.appendChild(particle);
+            }
+        };
+
+        // Create floating dots with enhanced effect
+const createFloatingDots = () => {
+    floatingDots.innerHTML = '';
+    const dotCount = 20; // Increased count
+    
+    for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'floating-dot';
+        
+        // Enhanced positioning and animation
+        const randomX = Math.random() * 200;
+        const randomY = Math.random() * 200;
+        const randomDelay = Math.random() * 5;
+        const randomDuration = 3 + Math.random() * 7;
+        const randomSize = Math.random() * 4 + 2;
+        
+        dot.style.left = `${randomX}px`;
+        dot.style.top = `${randomY}px`;
+        dot.style.width = `${randomSize}px`;
+        dot.style.height = `${randomSize}px`;
+        
+        // Enhanced color variations
+        const opacity = 0.3 + Math.random() * 0.5;
+        dot.style.opacity = opacity.toString();
+        
+        // Enhanced floating animation
+        dot.style.animation = `float ${randomDuration}s ease-in-out ${randomDelay}s infinite alternate`;
+        
+        floatingDots.appendChild(dot);
+    }
+};
+
+// Create ambient background particles
+const createAmbientParticles = () => {
+    ambientParticles.innerHTML = '';
+    const particleCount = 40;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'ambient-particle';
+        
+        // Enhanced positioning across the entire background
+        const randomX = Math.random() * window.innerWidth * 0.8;
+        const randomY = Math.random() * window.innerHeight * 0.8;
+        const randomSize = Math.random() * 3 + 1;
+        const randomOpacity = Math.random() * 0.5 + 0.1;
+        
+        particle.style.left = `${randomX}px`;
+        particle.style.top = `${randomY}px`;
+        particle.style.width = `${randomSize}px`;
+        particle.style.height = `${randomSize}px`;
+        particle.style.opacity = randomOpacity.toString();
+        
+        // Enhanced ambient animation
+        const randomDuration = 15 + Math.random() * 20;
+        const randomDelay = Math.random() * 10;
+        particle.style.animation = `ambient-float ${randomDuration}s ease-in-out ${randomDelay}s infinite alternate`;
+        
+        ambientParticles.appendChild(particle);
+    }
+};
+
+// Add sparkle effect to folder
+const addSparkles = () => {
+    const sparkleCount = 5;
+    
+    for (let i = 0; i < sparkleCount; i++) {
+        setTimeout(() => {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            
+            // Enhanced random positioning within the folder
+            const randomX = Math.random() * 160;
+            const randomY = Math.random() * 120 + 40;
+            
+            sparkle.style.left = `${randomX}px`;
+            sparkle.style.top = `${randomY}px`;
+            
+            // Enhanced sparkle animation
+            sparkle.style.animation = `sparkle 1.5s ease-out forwards`;
+            
+            icon.appendChild(sparkle);
+            
+            // Clean up after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1500);
+        }, 100 * i);
+    }
+};
+
+// Enhanced 3D rotation effect on mouse move
+iconContainer.addEventListener('mousemove', (e) => {
+    const bounds = iconContainer.getBoundingClientRect();
+    const mouseX = e.clientX - bounds.left;
+    const mouseY = e.clientY - bounds.top;
+    const centerX = bounds.width / 2;
+    const centerY = bounds.height / 2;
+    
+    // Enhanced responsive 3D rotation
+    const rotateY = ((mouseX - centerX) / centerX) * 15;
+    const rotateX = ((centerY - mouseY) / centerY) * 10;
+    
+    // Apply enhanced 3D transform with smooth transition
+    icon.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    
+    // Enhanced dynamic shadow effect
+    const shadowX = (mouseX - centerX) / 10;
+    const shadowY = (mouseY - centerY) / 10;
+    folder.style.boxShadow = `
+        ${-shadowX}px ${-shadowY}px 30px rgba(0, 0, 0, 0.2), 
+        ${-shadowX / 2}px ${-shadowY / 2}px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4)
+    `;
+});
+
+// Reset rotation when mouse leaves
+iconContainer.addEventListener('mouseleave', () => {
+    // Enhanced smooth return to original position
+    icon.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    folder.style.boxShadow = `
+        0 10px 30px rgba(0, 0, 0, 0.2), 
+        0 5px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4)
+    `;
+});
+
+// Enhanced click interaction
+iconContainer.addEventListener('click', (e) => {
+    // Add enhanced bounce animation
+    icon.classList.add('bounce');
+    
+    // Create ripple effect
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    
+    const bounds = iconContainer.getBoundingClientRect();
+    const x = e.clientX - bounds.left;
+    const y = e.clientY - bounds.top;
+    
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    
+    iconContainer.appendChild(ripple);
+    
+    // Create particles burst effect
+    setTimeout(() => {
+        const particles = document.querySelectorAll('.particle');
+        particles.forEach((particle, index) => {
+            // Enhanced staggered animation for particles
+            setTimeout(() => {
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const destinationX = 100 + Math.cos(angle) * distance;
+                const destinationY = 80 + Math.sin(angle) * distance;
+                
+                // Enhanced particle animation
+                particle.style.opacity = '0.8';
+                particle.style.transform = 'scale(1)';
+                particle.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                particle.style.left = `${destinationX}px`;
+                particle.style.top = `${destinationY}px`;
+                
+                // Fade out after animation
+                setTimeout(() => {
+                    particle.style.opacity = '0';
+                }, 600);
+            }, index * 30);
+        });
+        
+        // Add sparkles effect
+        addSparkles();
+        
+        // Enhanced file animation on click
+        files.forEach((file, index) => {
+            setTimeout(() => {
+                file.style.animation = `file-jump 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)`;
+                setTimeout(() => {
+                    file.style.animation = '';
+                }, 1200);
+            }, index * 150);
+        });
+    }, 100);
+    
+    // Remove bounce class after animation completes
+    setTimeout(() => {
+        icon.classList.remove('bounce');
+        
+        // Clean up ripple after animation
+        setTimeout(() => {
+            ripple.remove();
+        }, 800);
+    }, 800);
+});
+
+// Enhanced file hover effects
+files.forEach(file => {
+    file.addEventListener('mouseenter', () => {
+        // Enhanced focus effect for individual files
+        file.style.transform = `${file.style.transform.replace('scale(1)', '')} scale(1.15) translateZ(25px)`;
+        file.style.zIndex = '10';
+        file.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+        
+        // Show progress bar for file2
+        if (file.classList.contains('file2')) {
+            const progressBar = file.querySelector('.progress-bar');
+            if (progressBar) progressBar.style.opacity = '1';
+        }
+    });
+    
+    file.addEventListener('mouseleave', () => {
+        // Reset to original transformed state
+        file.style.zIndex = '';
+        file.style.boxShadow = '';
+        
+        // Reset transform based on file class
+        if (file.classList.contains('file1')) {
+            file.style.transform = iconContainer.classList.contains('hover') ? 
+                'rotate(-25deg) translateX(-35px) translateY(-15px) translateZ(25px)' : 
+                'rotate(-10deg) translateX(-10px) translateZ(5px)';
+        } else if (file.classList.contains('file2')) {
+            file.style.transform = iconContainer.classList.contains('hover') ? 
+                'translateY(-28px) translateZ(35px)' : 
+                'translateY(-5px) translateZ(10px)';
+        } else if (file.classList.contains('file3')) {
+            file.style.transform = iconContainer.classList.contains('hover') ? 
+                'rotate(25deg) translateX(35px) translateY(-15px) translateZ(25px)' : 
+                'rotate(10deg) translateX(10px) translateZ(15px)';
+        }
+    });
+});
+
+// Enhanced hover detection for container
+iconContainer.addEventListener('mouseenter', () => {
+    iconContainer.classList.add('hover');
+});
+
+iconContainer.addEventListener('mouseleave', () => {
+    iconContainer.classList.remove('hover');
+});
+
+// Add keyframe animations to document
+const addKeyframes = () => {
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-15px) translateX(5px); }
+        }
+        
+        @keyframes ambient-float {
+            0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { transform: translateY(-100px) translateX(50px); opacity: 0.7; }
+            100% { transform: translateY(-50px) translateX(-30px); opacity: 0.4; }
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+            20% { transform: scale(1.5) rotate(45deg); opacity: 1; }
+            60% { transform: scale(0.8) rotate(90deg); opacity: 0.8; }
+            100% { transform: scale(0) rotate(180deg); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+};
+
+// Initialize all effects
+const init = () => {
+    addKeyframes();
+    createParticles();
+    createFloatingDots();
+    createAmbientParticles();
+    
+    // Add enhanced hover state class for easier CSS targeting
+    iconContainer.addEventListener('mouseenter', () => {
+        setTimeout(() => {
+            createParticles(); // Refresh particles on hover
+        }, 300);
+    });
+};
+
+// Run initialization
+init();
+
+</script>
+</body>
+</html
